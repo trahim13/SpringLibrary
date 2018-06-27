@@ -18,8 +18,9 @@
     <context:component-scan base-package="org.trahim.library"/>
 
     <bean id="handlerMapping" class="org.springframework.webflow.mvc.servlet.FlowHandlerMapping">
+
         <property name="flowRegistry" ref="flowRegistry"/>
-        <property name="order" value="0"/>
+        <property name="order" value="2"/>
     </bean>
 
     <bean id="flowHandlerAdapter" class="org.springframework.faces.webflow.JsfFlowHandlerAdapter">
@@ -66,4 +67,15 @@
     <bean id="transactionManager" class="org.springframework.orm.hibernate5.HibernateTransactionManager">
         <property name="sessionFactory" ref="sessionFactory"/>
     </bean>
+
+
+    <!--мапиг ресурсов:ccs и прочего-->
+    <bean id="jsfResourceHandler" class="org.springframework.faces.webflow.JsfResourceRequestHandler" />
+
+    <bean class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
+        <property name="order" value="1"/>
+        <property name="mappings" value="/javax.faces.resource/**=jsfResourceHandler" />
+    </bean>
+    <!--мапиг ресурсов:ccs и прочего-->
+
 </beans>

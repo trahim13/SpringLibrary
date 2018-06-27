@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+<f:view>
+    <div>
+        <ui:insert name="header">
+            <ui:include src="header.xhtml"/>
+        </ui:insert>
+    </div>
+
+    <div>
+        <ui:insert name="logo">
+            <ui:include src="logo.xhtml"/>
+        </ui:insert>
+
+        <ui:insert name="search">
+            <ui:include src="search.xhtml"/>
+        </ui:insert>
+
+        <ui:insert name="letters">
+            <ui:include src="letters.xhtml"/>
+        </ui:insert>
+
+        <div>
+            <ui:insert name="genres">
+                <ui:include src="genres.xhtml"/>
+            </ui:insert>
+        </div>
+
+    </div>
+
+    <div>
+        <ui:insert name="footer">
+            <ui:include src="footer.xhtml"/>
+        </ui:insert>
+    </div>
+
+
+</f:view>
+</html>

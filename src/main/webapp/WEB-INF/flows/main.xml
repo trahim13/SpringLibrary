@@ -7,8 +7,8 @@ start-state="main">
 
 
     <view-state id="main" view="main">
-        <on-render>
-            <evaluate expression="bookDAOImpl.books"/>
-        </on-render>
+        <!--<on-render>-->
+            <!--<evaluate expression="bookDAOImpl.books"/>-->
+        <!--</on-render>-->
     </view-state>
 </flow>
