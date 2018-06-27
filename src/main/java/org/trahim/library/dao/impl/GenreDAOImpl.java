@@ -4,6 +4,7 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 import org.trahim.library.dao.interfaces.GenreDAO;
 import org.trahim.library.hibernate.entity.Genre;
 
@@ -22,6 +23,7 @@ public class GenreDAOImpl implements GenreDAO {
     private List<Genre> genres;
 
     @Override
+    @Transactional
     public List<Genre> getGenres() {
         Session session = sessionFactory.openSession();
         CriteriaBuilder cb = session.getCriteriaBuilder();

@@ -9,7 +9,7 @@
     <div>
         <h:form id="search_form">
             <h:inputText id="search_string"/>
-            <p:commandButton id="btnSearch" value="Search"/>
+            <p:commandButton id="btnSearch" value="#{messageSource.search}"/>
 
 
             <div>
@@ -19,7 +19,7 @@
 
 
             <script type="text/javascript"> language="javascript">
-                document.getElementById("search_form:search_string").setAttribute("placeholder", "Место для ввода");
+                document.getElementById("search_form:search_string").setAttribute("placeholder", "#{messageSource.search_book}");
             </script>
         </h:form>
     </div>

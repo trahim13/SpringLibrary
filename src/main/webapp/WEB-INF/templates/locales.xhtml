@@ -9,8 +9,13 @@
 <ui:composition>
     <div>
     <h:form>
-        <p:outputLabel value="ru"/>
-        <p:outputLabel value="en"/>
+        <h:outputLink value="?lang=ru" >
+            <h:outputText value="#{messageSource.ru}"/>
+        </h:outputLink>
+        <h:outputLink value="?lang=en">
+            <h:outputLabel value="#{messageSource.en}"/>
+        </h:outputLink>
+
     </h:form>
     </div>
 </ui:composition>

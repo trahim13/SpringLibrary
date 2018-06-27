@@ -61,6 +61,7 @@ public class BookDAOImpl implements BookDAO {
     }
 
     @Override
+    @Transactional
     public List<Book> getBooks(Author author) {
 
         Session session = sessionFactory.openSession();
@@ -71,6 +72,7 @@ public class BookDAOImpl implements BookDAO {
     }
 
     @Override
+    @Transactional
     public List<Book> getBooks(String bookName) {
         Session session = sessionFactory.openSession();
         CriteriaBuilder cb = session.getCriteriaBuilder();
@@ -103,6 +105,7 @@ public class BookDAOImpl implements BookDAO {
     }
 
     @Override
+    @Transactional
     public List<Book> getBooks(Genre genre) {
 
         Session session = sessionFactory.openSession();
@@ -112,6 +115,7 @@ public class BookDAOImpl implements BookDAO {
     }
 
     @Override
+    @Transactional
     public List<Book> getBooks(Character letter) {
 
 
