@@ -76,4 +76,9 @@ public class Author implements Serializable {
 
         return Objects.hash(id, fio, birthday);
     }
+
+    @Override
+    public String toString() {
+        return fio;
+    }
 }

@@ -4,16 +4,94 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
 >
 
-<h:head>
-    <title>Main</title>
 
-</h:head>
-
-<h:body>
     <ui:composition template="../templates/library.xhtml">
 
+        <ui:define name="title">
+            Место для title
+        </ui:define>
+
+        <ui:define name="content">
+
+            <h:form id="booksForm" >
+
+            <p:dataGrid rowIndexVar="rowIndex"
+                                  columns="2" lazy="true" var="b"
+                                  value="${libraryFacade.books}"  id="booksList" paginator="true" rows="4" paginatorPosition="bottom"
+                                  rowsPerPageTemplate="4,10,20" paginatorTemplate="{RowsPerPageDropdown} {PageLinks}"
+                                  paginatorAlwaysVisible="true"
+                                  emptyMessage="">
+
+
+            <div>
+
+                    <div>
+                        <h:outputLink target="_blank">
+                            <p:graphicImage width="110" height="150"/>
+                        </h:outputLink>
+
+                        <p:panelGrid id="ratingPanel" columns="2">
+
+                            <p:rating id="rating" value="#{b.rating}" cancel="false" stars="5"/>
+                            <p:outputLabel id="voteCount" value="(#{b.voteCount})"/>
+
+                        </p:panelGrid>
+
+                    </div>
+
+                    <div>
+                        <div>
+                            <h:outputLink id="bookName" target="_blank">
+                                #{b.name}
+                            </h:outputLink>
+                        </div>
+
+                        <div>
+                            <span>#{b.author}</span>
+                            <p><strong>Колличество страниц:</strong> #{b.pageCount}</p>
+                            <p><strong>Издательство</strong> #{b.publisher}</p>
+                            <p><strong>Дата издания</strong> #{b.publishYear} г.</p>
+                            <p><strong>ISBN</strong> #{b.isbn}</p>
+                        </div>
+                    </div>
+
+                    <h:outputLink  target="_blank">
+                        <p>Читать</p>
+                    </h:outputLink>
+
+                    <h:outputLink  target="_blank">
+                        <p>Скачать</p>
+                    </h:outputLink>
+
+                    <p:commandLink  title="Редактировать книгу">
+                        <p>Редактировать</p>
+                    </p:commandLink>
+
+                    <p:commandLink  title="Удалить книгу" type="button">
+                        <p>Удалить</p>
+                    </p:commandLink>
+                </div>
+
+
+            </p:dataGrid>
+
+            </h:form>
+
+        </ui:define>
+
+        <ui:define name="books_count">
+            <div>
+                <p:outputLabel value="Колличество книг: #{libraryFacade.books.size()}"/>
+            </div>
+
+            <h:form id="add-action">
+                <p:commandLink>
+                    <h:outputText value="Добавить книгу" title="Добавить книгу"/>
+                </p:commandLink>
+            </h:form>
+        </ui:define>
     </ui:composition>
-</h:body>
 </html>
