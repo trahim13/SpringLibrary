@@ -60,6 +60,10 @@ public class Book implements Serializable {
     public Book() {
     }
 
+    public Book(byte[] content) {
+        this.content = content;
+    }
+
     @JoinColumn(name = "publisher_id")
     @ManyToOne
     public Publisher getPublisher() {

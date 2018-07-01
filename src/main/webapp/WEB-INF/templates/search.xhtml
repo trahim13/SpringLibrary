@@ -8,15 +8,16 @@
 <ui:composition>
     <div>
         <h:form id="search_form">
-            <h:inputText id="search_string"/>
-            <p:commandButton id="btnSearch" value="#{messageSource.search}"/>
+            <h:inputText id="search_string" value="#{searchCriteria.text}"/>
 
+            <p:commandButton id="btnSearch" value="#{messageSource.search}" action="searchByText">
+                <p:ajax execute="@form" render=":booksForm:booksList"/>
+            </p:commandButton>
 
             <div>
                 <h:selectOneMenu id="search_select" value="#{utils.selectedSearchType}">
                     <f:selectItems value="${utils.searchTypeList}"/>
                 </h:selectOneMenu>
-
             </div>
 
 

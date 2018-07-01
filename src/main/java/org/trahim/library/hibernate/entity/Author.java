@@ -18,9 +18,15 @@ public class Author implements Serializable {
     private String fio;
     private Date birthday;
 
-
-
     private List<Book> books = new ArrayList<>();
+
+
+    public Author() {
+    }
+
+    public Author(String fio) {
+        this.fio = fio;
+    }
 
     @Id
     @Column(name = "id", nullable = false)

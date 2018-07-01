@@ -146,4 +146,25 @@ public class BookDAOImpl implements BookDAO {
 
         return books;
     }
+
+    @Override
+    public Object getFieldValue(Long id, String fieldName) {
+        Session session = sessionFactory.openSession();
+        CriteriaBuilder cb = session.getCriteriaBuilder();
+        CriteriaQuery<Book> cq = cb.createQuery(Book.class);
+        Root<Book> root = cq.from(Book.class);
+        Selection[] selection = {root.get(fieldName)}; // выборка полей
+        ParameterExpression<Long> nameParam = cb.parameter(Long.class, "id");//создали параметр
+        cq.select(cb.construct(Book.class, selection)) /// select отдельные поля from
+                .where(cb.equal(root.get(Book_.ID), nameParam));// к полю fieldName таблицы book применяем equal параметр nameParam
+
+        Query query = session.createQuery(cq);
+        query.setParameter("id", id); // задаем пераметр nameParam
+
+        Book book =  (Book) query.getSingleResult();
+
+        session.close();
+
+        return book.getContent();
+    }
 }

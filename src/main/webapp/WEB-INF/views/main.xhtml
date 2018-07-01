@@ -5,32 +5,34 @@
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
 >
 
 
-    <ui:composition template="../templates/library.xhtml">
+<ui:composition template="../templates/library.xhtml">
 
-        <ui:define name="title">
-            Место для title
-        </ui:define>
+    <ui:define name="title">
+        Место для title
+    </ui:define>
 
-        <ui:define name="content">
+    <ui:define name="content">
 
-            <h:form id="booksForm" >
+        <h:form id="booksForm">
 
             <p:dataGrid rowIndexVar="rowIndex"
-                                  columns="2" lazy="true" var="b"
-                                  value="${libraryFacade.books}"  id="booksList" paginator="true" rows="4" paginatorPosition="bottom"
-                                  rowsPerPageTemplate="4,10,20" paginatorTemplate="{RowsPerPageDropdown} {PageLinks}"
-                                  paginatorAlwaysVisible="true"
-                                  emptyMessage="">
+                        columns="2" lazy="true" var="b"
+                        value="${libraryFacade.books}" id="booksList" paginator="true" rows="4"
+                        paginatorPosition="bottom"
+                        rowsPerPageTemplate="4,10,20" paginatorTemplate="{RowsPerPageDropdown} {PageLinks}"
+                        paginatorAlwaysVisible="true"
+                        emptyMessage="">
 
 
-            <div>
+                <div>
 
                     <div>
                         <h:outputLink target="_blank">
-                            <p:graphicImage width="110" height="150"/>
+                            <p:graphicImage value="/ShowImage?index=#{rowIndex}" width="110" height="150"/>
                         </h:outputLink>
 
                         <p:panelGrid id="ratingPanel" columns="2">
@@ -44,8 +46,10 @@
 
                     <div>
                         <div>
-                            <h:outputLink id="bookName" target="_blank">
+                            <h:outputLink id="bookName" value="#{request.contextPath}/PdfContent" target="_blank">
                                 #{b.name}
+                                <f:param name="id" value="#{b.id}"/>
+                                <f:param name="save" value="false"/>
                             </h:outputLink>
                         </div>
 
@@ -58,19 +62,27 @@
                         </div>
                     </div>
 
-                    <h:outputLink  target="_blank">
+
+
+                    <h:outputLink styleClass="mr" value="#{request.contextPath}/PdfContent" target="_blank">
                         <p>Читать</p>
+                        <f:param name="id" value="#{b.id}"/>
+                        <f:param name="save" value="false"/>
                     </h:outputLink>
 
-                    <h:outputLink  target="_blank">
+
+                    <h:outputLink styleClass="mr" value="#{request.contextPath}/PdfContent" target="_blank">
                         <p>Скачать</p>
+                        <f:param name="id" value="#{b.id}"/>
+                        <f:param name="filename" value="#{b.name}"/>
+                        <f:param name="save" value="true"/>
                     </h:outputLink>
 
-                    <p:commandLink  title="Редактировать книгу">
+                    <p:commandLink title="Редактировать книгу">
                         <p>Редактировать</p>
                     </p:commandLink>
 
-                    <p:commandLink  title="Удалить книгу" type="button">
+                    <p:commandLink title="Удалить книгу" type="button">
                         <p>Удалить</p>
                     </p:commandLink>
                 </div>
@@ -78,20 +90,20 @@
 
             </p:dataGrid>
 
-            </h:form>
+        </h:form>
 
-        </ui:define>
+    </ui:define>
 
-        <ui:define name="books_count">
-            <div>
-                <p:outputLabel value="Колличество книг: #{libraryFacade.books.size()}"/>
-            </div>
+    <ui:define name="books_count">
+        <div>
+            <p:outputLabel value="Колличество книг: #{libraryFacade.books.size()}"/>
+        </div>
 
-            <h:form id="add-action">
-                <p:commandLink>
-                    <h:outputText value="Добавить книгу" title="Добавить книгу"/>
-                </p:commandLink>
-            </h:form>
-        </ui:define>
-    </ui:composition>
+        <h:form id="add-action">
+            <p:commandLink>
+                <h:outputText value="Добавить книгу" title="Добавить книгу"/>
+            </p:commandLink>
+        </h:form>
+    </ui:define>
+</ui:composition>
 </html>

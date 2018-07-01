@@ -3,6 +3,7 @@ package org.trahim.library.objects;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.MessageSource;
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 import org.trahim.library.enums.SearchType;
 
@@ -11,8 +12,9 @@ import java.util.HashMap;
 import java.util.Map;
 
 @Component
+@Scope("singleton")
 public class Utils {
-    private Map<String, SearchType> searchTypeList = new HashMap<String, SearchType>();
+    private Map<String, SearchType> searchTypeList = new HashMap<>();
     private SearchType selectedSearchType = SearchType.TITLE;//по-умолчанию
 
     @Autowired
